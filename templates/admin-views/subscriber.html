@@ -1,0 +1,126 @@
+<html>
+  <head>
+    <title>Admin Panel</title>
+  </head>
+  <body>
+    {% include 'admin-views/admin-nav.html' %}
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        margin-top: 0;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .table {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        padding: 10px 100px;
+      }
+
+      .caption {
+        display: table-caption;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .thead {
+        display: table-header-group;
+        font-weight: bold;
+      }
+
+      .tbody {
+        display: table-row-group;
+      }
+
+      .tr {
+        display: table-row;
+      }
+
+      .th {
+        border-bottom: 1px dashed #cccccc;
+      }
+
+      .tr:nth-child(odd) {
+        background: #f5f5f5;
+      }
+
+      .th,
+      .td {
+        display: table-cell;
+      }
+
+      .td {
+        padding: 10px 0;
+      }
+
+      .label {
+        display: none;
+      }
+
+      @media all and (max-width: 600px) {
+        .thead {
+          display: none;
+        }
+        .tr {
+          display: block;
+          margin-bottom: 1.5em;
+          padding: 10px;
+        }
+        .td {
+          display: inherit;
+          padding: 0;
+        }
+        .label {
+          font-weight: bold;
+          display: inline-block;
+          min-width: 120px;
+        }
+      }
+    </style>
+
+    <br><br><div class="contacts table" aria-labelledby="contacts-caption-text">
+      <span class="caption" id="contacts-caption-text"
+        >Our Subscriber<br /><br /><br />
+      </span>
+
+      <div class="contacts-header thead">
+        <span class="th" id="th-name">Id:</span>
+        <span class="th" id="th-email">Email:</span>
+      </div>
+
+      <ul class="tbody">
+        {% for item in list_subscriber %}
+        <li class="tr" itemscope itemtype="#">
+          <span class="td">
+            <span class="label">Id:</span>
+            <span class="data" itemprop="name" aria-labelledby="th-name">
+              {{ item.id }}</span>
+            
+          </span>
+          
+          <span class="td">
+            <span class="label">Email:</span>
+            <span class="data" itemprop="email" aria-labelledby="th-email">
+            <a href="#">{{ item.email }}</a></span>
+          </span>
+          
+          <!-- example -->
+          <button id="mybutton" style = {
+            margin-top: 2%;
+            margin-right: 12;
+            width: 100;
+          } action="#">Delete</button>
+        </li>
+        {% endfor %}       
+      </ul>
+    </div>
+  </body>
+</html>
